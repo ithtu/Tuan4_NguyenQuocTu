@@ -1,0 +1,76 @@
+﻿@model IEnumerable<lap4_NguyenQuocTu.Models.Giohang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GioHang</h2>
+
+
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.TenSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giaban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soluong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.thanhtien)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenSach)
+    </td>
+    <td>
+        <img src="@item.hinh" width="180" />
+    </td>
+    @using (Html.BeginForm("CapNhatgiohang", "GioHang", new { @id = item.Masach }))
+    {
+        <td>
+            @String.Format("{0:0,0}",item.giaban) VND
+        </td>
+        <td>
+           <input type="number" min="1" name="txtSolg" value="@item.soluong" />
+         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thanhtien)
+        </td>
+        <td>
+            <a href="@Url.Action("Detail","Sach",new { id = item.Masach})" class="btn btn-info"> Chi Tiet </a> |
+            @*@Html.ActionLink("Delete", "XoaGioHang", new { @id = item.Masach })*@
+            <a href="@Url.Action("XoaGioHang","GioHang",new { id = item.Masach})" class="btn btn-danger"> Delete </a>
+        </td>
+        <td> <input type="submit" value="Update" class="btn btn-success" /></td>
+    }
+
+ </tr>
+}
+<tr style="font-weight:bold; text-align: right; color:red">
+    <td colspan="2">So loai sach : @ViewBag.Tongsoluonsanpham</td>
+    <td colspan="2">So luong sach : @ViewBag.TongSOluong</td>
+    <td colspan="4">Tong tien : @String.Format("{0:0,0}",ViewBag.Tongtien) VND</td>
+</tr>
+    <tr style="font-weight:bold; text-align: right; color:blue">
+        <td colspan="5">
+            @Html.ActionLink("Delete", "XoatatcaGiohang")
+        </td>
+    </tr>
+    <tr style="font-weight:bold; text-align: right; color:yellowgreen">
+        <td colspan="5">
+            @Html.ActionLink("Order", "DatHang")
+        </td>
+    </tr>
+</table>

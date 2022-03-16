@@ -1,0 +1,30 @@
+﻿@model  IEnumerable<lap4_NguyenQuocTu.Models.TheLoai>
+@{
+    ViewBag.Title = "ListTheLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List The Loai</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th> Mã loại </th>
+        <th> Tên loại</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.maloai)</td>
+            <td>@Html.DisplayFor(modelItem => item.tenloai)</td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.maloai }) |
+                @Html.ActionLink("Detail", "Detail", new { id = item.maloai }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.maloai })
+            </td>
+        </tr>
+    }
+</table>
+
