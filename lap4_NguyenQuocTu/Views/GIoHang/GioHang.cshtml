@@ -39,12 +39,16 @@
     </td>
     @using (Html.BeginForm("CapNhatgiohang", "GioHang", new { @id = item.Masach }))
     {
+
         <td>
-            @String.Format("{0:0,0}",item.giaban) VND
+            @String.Format("{0:0,0}", item.giaban) VND
         </td>
         <td>
-           <input type="number" min="1" name="txtSolg" value="@item.soluong" />
-         </td>
+            <input type="number" min="1" name="txtSolg" value="@item.soluong" />
+            <p>@ViewBag.Message</p>
+
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.thanhtien)
         </td>
@@ -56,7 +60,8 @@
         <td> <input type="submit" value="Update" class="btn btn-success" /></td>
     }
 
- </tr>
+
+</tr>
 }
 <tr style="font-weight:bold; text-align: right; color:red">
     <td colspan="2">So loai sach : @ViewBag.Tongsoluonsanpham</td>

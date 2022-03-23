@@ -1,0 +1,87 @@
+﻿@model IEnumerable<lap4_NguyenQuocTu.Models.Giohang>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DatHang</h2>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Masach) </th>
+        <th>@Html.DisplayNameFor(model => model.TenSach) </th>
+        <th>@Html.DisplayNameFor(model => model.hinh) </th>
+        <th>@Html.DisplayNameFor(model => model.giaban) </th>
+        <th>@Html.DisplayNameFor(model => model.soluong) </th>
+        <th>@Html.DisplayNameFor(model => model.thanhtien) </th>
+        <th></th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Masach)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TenSach)</td>
+                    <td><img src="@item.hinh" width="200" /></td>
+                    @using (Html.BeginForm("CapnhatGiohang","Giohang", new { @id = item.Masach }))
+                    {
+                        <td>@String.Format("{0:0,0}", item.giaban) VND</td>
+                        <td>@Html.DisplayFor(modelItem => item.soluong)</td>
+                        <td>@Html.DisplayFor(modelItem => item.thanhtien)</td>
+                    }
+                </tr>
+            }
+    <tr style="font-weight:bold; text-align:right; color:red">
+        <td colspan="3">So luong sach: @ViewBag.Tongsoluong</td>
+        <td colspan="4">So loai sach: @ViewBag.Tongsoluongsanpham</td>
+        <td colspan="5">tongtien:@String.Format("{0:0,0}", @ViewBag.Tongtien) VND</td>
+    </tr>
+    <tr style="font-weight:bold; text-align:right; color:red">
+        <td colspan="6">@Html.ActionLink("Tro ve gio hang","Giohang","GioHang")</td>
+
+    </tr>
+</table>
+@using lap4_NguyenQuocTu.Models
+<h2 style="text-align: center">Thông tin đặt hàng </h2>
+@{
+    KhachHang kh = (KhachHang)Session["TaiKhoan"];
+}
+<table align="center">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td>Ho ten khac hang:</td>
+            <td style="font-weight:bold">@kh.hoten</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Email:</td>
+            <td style="font-weight:bold">@kh.email</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Dia chi:</td>
+            <td style="font-weight:bold">@kh.diachi</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Dien thoai:</td>
+            <td style="font-weight:bold">@kh.dienthoai</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Ngay Dat:</td>
+            <td style="font-weight:bold">@DateTime.Now.ToShortDateString()</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Ngay Giao:</td>
+            <td style="font-weight:bold">
+                <input type="date" name="NgayGiao" />
+                <p style="color:red">@ViewBag.MessageEx</p>
+            </td>
+            
+        </tr>
+        <tr style="height:40px">
+            <td style="font-weight:bold">
+                <input type="submit" value="Xac nhan" class="btn btn-success" />
+            </td>
+        </tr>
+    }
+</table>
+

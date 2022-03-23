@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -23,6 +25,9 @@
                     <li>@Html.ActionLink("BOOKs", "ListSach", "Sach")</li>
                     <li>@Html.ActionLink("CATEGORIES", "ListTheLoai", "TheLoai")</li>
                     <li>@Html.Partial("~/Views/GioHang/GioHangPartial.cshtml")</li>
+                    <li>@Html.ActionLink("Dang Ky", "DangKy", "NguoiDung")</li>
+                    <li>@Html.ActionLink("Dang Nhap", "DangNhap", "NguoiDung")</li>
+                    <li>@Html.ActionLink("Dang Xuat", "DangNhap", "NguoiDung")</li>
                 </ul>
             </div>
         </div>
@@ -37,7 +42,10 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
     @RenderSection("scripts", required: false)
+
     @RenderSection("upload", required: false)
+
 </body>
 </html>
